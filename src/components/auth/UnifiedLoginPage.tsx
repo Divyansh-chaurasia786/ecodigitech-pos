@@ -1,25 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
-  Store,
-  ShieldAlert,
+  User,
   Mail,
   Lock,
   Eye,
   EyeOff,
-  ArrowRight,
+  Store,
+  ShieldAlert,
   AlertCircle,
-  KeyRound,
   QrCode,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 
 export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE" | "ADMIN" }) {
   const [activeTab, setActiveTab] = useState<"STORE" | "ADMIN">(initialTab);
+  const [rememberMe, setRememberMe] = useState(true);
 
   // --- STORE POS STATE ---
   const [storeIdentifier, setStoreIdentifier] = useState("");
@@ -130,117 +128,42 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-[#07090e] text-slate-100 overflow-hidden p-4 sm:p-6 lg:p-10 font-sans select-none">
-      {/* Dynamic Ambient Background Glows */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_20%_-20%,rgba(168,85,247,0.15),rgba(255,255,255,0))]" />
-      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_80%_120%,rgba(16,185,129,0.12),rgba(255,255,255,0))]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[180px] pointer-events-none" />
+    <div className="min-h-screen relative flex items-center justify-center bg-gradient-to-br from-[#120824] via-[#241034] to-[#0c1838] text-white overflow-hidden p-4 sm:p-6 font-sans select-none">
+      {/* Soft Blurred Background Ambient Orbs (Matching Reference Photo) */}
+      <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] bg-rose-600/30 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[15%] w-[600px] h-[600px] bg-blue-600/30 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-[40%] right-[30%] w-[450px] h-[450px] bg-purple-600/25 rounded-full blur-[150px] pointer-events-none" />
 
-      {/* Decorative Grid Mesh */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-
-      {/* Main Grid Container */}
-      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
-        
-        {/* LEFT PANEL: Modern SaaS Brand & Feature Showcase */}
-        <div className="lg:col-span-6 space-y-8 text-left hidden lg:block">
+      {/* Main Glassmorphism Card */}
+      <div className="relative w-full max-w-[420px] z-10">
+        <div className="relative backdrop-blur-3xl bg-white/[0.08] border border-white/[0.18] rounded-[38px] p-8 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.55)] space-y-7 overflow-hidden">
           
-          {/* Brand Header */}
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800/90 backdrop-blur-xl shadow-xl">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
-              <span className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">
-                Unified Cloud POS &amp; Governance Portal
-              </span>
+          {/* Subtle Card Inner Top/Bottom Ambient Lighting */}
+          <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-rose-500/15 via-purple-500/10 to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
+
+          {/* TOP AVATAR SILHOUETTE BADGE (Matching Image) */}
+          <div className="relative z-10 flex flex-col items-center space-y-3">
+            <div className="w-24 h-24 rounded-full bg-white/15 border border-white/25 flex items-center justify-center shadow-xl backdrop-blur-md">
+              <User className="w-12 h-12 text-white/90 stroke-[1.5]" />
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl border border-slate-700/80 shadow-2xl">
-                <Image
-                  src="/brand/logo.png"
-                  alt="EcoDigiTech POS"
-                  width={210}
-                  height={55}
-                  className="h-10 w-auto object-contain"
-                  priority
-                />
-              </div>
-            </div>
-
-            <h1 className="text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
-              Enterprise POS Billing <br />
-              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
-                &amp; Super Admin Governance
-              </span>
-            </h1>
-            <p className="text-sm text-slate-400 font-medium leading-relaxed max-w-md">
-              High-speed counter billing software, repair job sheet management, and multi-tenant store provisioning platform.
-            </p>
-          </div>
-
-          {/* Glass Feature Box */}
-          <div className="relative p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl space-y-4 overflow-hidden group">
-            <div className="absolute -right-16 -top-16 w-48 h-48 bg-violet-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
-            
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-violet-400" />
-                <span className="text-xs font-extrabold text-white">Select Your Access Portal</span>
-              </div>
-              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                Single Sign-On Engine
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-2xl bg-slate-950/70 border border-slate-800/90 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-violet-300 text-[11.5px]">
-                  <Store className="w-3.5 h-3.5 text-violet-400" />
-                  <span>Store POS Portal</span>
-                </div>
-                <p className="text-[10.5px] text-slate-400">Merchant owners &amp; cashiers for counter sales, billing &amp; inventory.</p>
-              </div>
-
-              <div className="p-3 rounded-2xl bg-slate-950/70 border border-slate-800/90 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-rose-300 text-[11.5px]">
-                  <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Super Admin Portal</span>
-                </div>
-                <p className="text-[10.5px] text-slate-400">Master 2FA governance terminal for platform tenant provisioning.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Operational Status */}
-          <div className="flex items-center gap-3 text-xs text-slate-400 pt-1">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-semibold text-slate-300">
-              System Operational • Secure 256-bit SSL Encrypted
-            </span>
-          </div>
-
-        </div>
-
-        {/* RIGHT PANEL: Sleek Unified Sign-In Card with Role Switcher */}
-        <div className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">
-          <div className="bg-slate-900/90 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
-            
-            {/* SEGMENTED TAB SWITCHER */}
-            <div className="p-1 rounded-2xl bg-slate-950 border border-slate-800 grid grid-cols-2 gap-1 text-xs font-bold select-none">
+            {/* Portal Role Selector Pills */}
+            <div className="p-1 rounded-full bg-black/25 border border-white/15 flex items-center gap-1 text-[11px] font-medium tracking-wide">
               <button
                 type="button"
                 onClick={() => {
                   setActiveTab("STORE");
                   setStoreError("");
                 }}
-                className={`py-3 px-3 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
                   activeTab === "STORE"
-                    ? "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 text-white shadow-lg shadow-violet-600/25"
-                    : "text-slate-400 hover:text-white hover:bg-slate-900"
+                    ? "bg-white/25 text-white font-bold shadow-md border border-white/30"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
-                <Store className="w-4 h-4" />
-                <span>Store POS Sign-In</span>
+                <Store className="w-3.5 h-3.5" />
+                <span>Store POS</span>
               </button>
 
               <button
@@ -249,269 +172,251 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                   setActiveTab("ADMIN");
                   setAdminError("");
                 }}
-                className={`py-3 px-3 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
                   activeTab === "ADMIN"
-                    ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/25"
-                    : "text-slate-400 hover:text-white hover:bg-slate-900"
+                    ? "bg-white/25 text-white font-bold shadow-md border border-white/30"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
-                <ShieldAlert className="w-4 h-4 text-rose-400" />
+                <ShieldAlert className="w-3.5 h-3.5 text-rose-300" />
                 <span>Super Admin</span>
               </button>
             </div>
+          </div>
 
-            {/* TAB CONTENT 1: STORE POS LOGIN */}
-            {activeTab === "STORE" && (
-              <div className="space-y-5 animate-in fade-in zoom-in-95 duration-200">
-                <div className="space-y-1 text-center sm:text-left">
-                  <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Store Counter Terminal
-                  </h2>
-                  <p className="text-xs text-slate-400 font-medium">
-                    Sign in with your merchant owner or cashier credentials
-                  </p>
+          {/* TAB 1: STORE POS FORM */}
+          {activeTab === "STORE" && (
+            <div className="relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-200">
+              {storeError && (
+                <div className="p-3 bg-rose-500/20 border border-rose-400/40 text-rose-100 text-xs rounded-xl font-medium flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-300 shrink-0" />
+                  <span>{storeError}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleStoreLogin} className="space-y-6">
+                {/* Email ID Underline Input */}
+                <div className="relative border-b border-white/35 focus-within:border-white transition-colors py-1">
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-white/80 shrink-0" />
+                    <input
+                      type="text"
+                      required
+                      placeholder="Email ID or Store Phone"
+                      value={storeIdentifier}
+                      onChange={(e) => setStoreIdentifier(e.target.value)}
+                      className="w-full bg-transparent text-white placeholder-white/60 text-sm focus:outline-none font-medium py-1.5"
+                    />
+                  </div>
                 </div>
 
-                {storeError && (
-                  <div className="p-3.5 bg-rose-950/90 border border-rose-800/90 text-rose-200 text-xs rounded-2xl font-semibold flex items-center gap-2.5">
-                    <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
-                    <span>{storeError}</span>
+                {/* Password Underline Input */}
+                <div className="relative border-b border-white/35 focus-within:border-white transition-colors py-1">
+                  <div className="flex items-center gap-3">
+                    <Lock className="w-4 h-4 text-white/80 shrink-0" />
+                    <input
+                      type={showStorePassword ? "text" : "password"}
+                      required
+                      placeholder="Password"
+                      value={storePassword}
+                      onChange={(e) => setStorePassword(e.target.value)}
+                      className="w-full bg-transparent text-white placeholder-white/60 text-sm focus:outline-none font-medium py-1.5"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowStorePassword(!showStorePassword)}
+                      className="text-white/70 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {showStorePassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
                   </div>
-                )}
+                </div>
 
-                <form onSubmit={handleStoreLogin} className="space-y-4">
-                  <div className="space-y-1.5">
-                    <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                      Email Address or Store Phone
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                        <Mail className="w-4 h-4" />
-                      </div>
+                {/* Remember Me & Forgot Password Row (Exact Layout from Photo) */}
+                <div className="flex items-center justify-between text-xs text-white/80 font-normal pt-1">
+                  <label className="flex items-center gap-2 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="w-4 h-4 rounded bg-white/10 border-white/30 text-indigo-500 focus:ring-0 focus:ring-offset-0 accent-indigo-500 cursor-pointer"
+                    />
+                    <span>Remember me</span>
+                  </label>
+
+                  <Link
+                    href="/pos/forgot-password"
+                    className="italic text-white/80 hover:text-white transition-colors hover:underline"
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
+
+                {/* Glowing Multi-Color Gradient Action Button (Matching Reference Photo) */}
+                <button
+                  type="submit"
+                  disabled={storeLoading}
+                  className="w-full bg-gradient-to-r from-[#480d2d] via-[#35104e] to-[#3a62db] hover:from-[#581138] hover:to-[#456ef0] text-white font-bold tracking-widest text-sm py-3.5 rounded-full shadow-lg transition-all cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2 uppercase mt-2 border border-white/15"
+                >
+                  {storeLoading ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>SIGNING IN...</span>
+                    </>
+                  ) : (
+                    <span>LOGIN</span>
+                  )}
+                </button>
+              </form>
+            </div>
+          )}
+
+          {/* TAB 2: SUPER ADMIN FORM */}
+          {activeTab === "ADMIN" && (
+            <div className="relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-200">
+              {adminError && (
+                <div className="p-3 bg-rose-500/20 border border-rose-400/40 text-rose-100 text-xs rounded-xl font-medium flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-300 shrink-0" />
+                  <span>{adminError}</span>
+                </div>
+              )}
+
+              {adminStep === "CREDENTIALS" ? (
+                <form onSubmit={handleAdminCredentials} className="space-y-6">
+                  {/* Admin Email Underline Input */}
+                  <div className="relative border-b border-white/35 focus-within:border-white transition-colors py-1">
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-4 h-4 text-white/80 shrink-0" />
                       <input
-                        type="text"
+                        type="email"
                         required
-                        placeholder="e.g. store@ecodigitech.com or 9876543210"
-                        value={storeIdentifier}
-                        onChange={(e) => setStoreIdentifier(e.target.value)}
-                        className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-sm text-white placeholder-slate-600 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none font-medium transition-all"
+                        placeholder="Admin Email ID"
+                        value={adminEmail}
+                        onChange={(e) => setAdminEmail(e.target.value)}
+                        className="w-full bg-transparent text-white placeholder-white/60 text-sm focus:outline-none font-medium py-1.5"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between items-center">
-                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                        Terminal Password
-                      </label>
-                      <Link
-                        href="/pos/forgot-password"
-                        className="text-[11px] text-violet-400 hover:text-violet-300 font-bold transition-colors"
-                      >
-                        Forgot password?
-                      </Link>
-                    </div>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                        <Lock className="w-4 h-4" />
-                      </div>
+                  {/* Admin Password Underline Input */}
+                  <div className="relative border-b border-white/35 focus-within:border-white transition-colors py-1">
+                    <div className="flex items-center gap-3">
+                      <Lock className="w-4 h-4 text-white/80 shrink-0" />
                       <input
-                        type={showStorePassword ? "text" : "password"}
+                        type={showAdminPassword ? "text" : "password"}
                         required
-                        placeholder="••••••••••••"
-                        value={storePassword}
-                        onChange={(e) => setStorePassword(e.target.value)}
-                        className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-slate-600 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none font-medium transition-all"
+                        placeholder="Admin Password"
+                        value={adminPassword}
+                        onChange={(e) => setAdminPassword(e.target.value)}
+                        className="w-full bg-transparent text-white placeholder-white/60 text-sm focus:outline-none font-medium py-1.5"
                       />
                       <button
                         type="button"
-                        onClick={() => setShowStorePassword(!showStorePassword)}
-                        className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
+                        onClick={() => setShowAdminPassword(!showAdminPassword)}
+                        className="text-white/70 hover:text-white transition-colors cursor-pointer"
                       >
-                        {showStorePassword ? <EyeOff className="w-4 h-4 text-slate-300" /> : <Eye className="w-4 h-4 text-slate-500" />}
+                        {showAdminPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
                   </div>
 
+                  {/* Remember Me Row */}
+                  <div className="flex items-center justify-between text-xs text-white/80 font-normal pt-1">
+                    <label className="flex items-center gap-2 cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                        className="w-4 h-4 rounded bg-white/10 border-white/30 text-indigo-500 focus:ring-0 accent-indigo-500 cursor-pointer"
+                      />
+                      <span>Remember me</span>
+                    </label>
+
+                    <span className="text-[11px] text-rose-300 font-mono font-bold">2FA Enabled</span>
+                  </div>
+
+                  {/* Action Button */}
                   <button
                     type="submit"
-                    disabled={storeLoading}
-                    className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 disabled:opacity-50 text-white font-extrabold py-3.5 rounded-xl text-sm shadow-lg shadow-violet-600/25 transition-all cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
+                    disabled={adminLoading}
+                    className="w-full bg-gradient-to-r from-[#480d2d] via-[#35104e] to-[#3a62db] hover:from-[#581138] hover:to-[#456ef0] text-white font-bold tracking-widest text-sm py-3.5 rounded-full shadow-lg transition-all cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2 uppercase mt-2 border border-white/15"
                   >
-                    {storeLoading ? (
+                    {adminLoading ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        <span>Authenticating Terminal...</span>
+                        <span>AUTHENTICATING...</span>
                       </>
                     ) : (
-                      <>
-                        <span>Sign In to Counter Terminal</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </>
+                      <span>PROCEED 2FA</span>
                     )}
                   </button>
                 </form>
-              </div>
-            )}
+              ) : (
+                <form onSubmit={handleAdminTotp} className="space-y-5 text-xs">
+                  {isEnrollment && qrCodeUrl ? (
+                    <div className="text-center space-y-3 p-4 bg-black/40 rounded-2xl border border-white/20">
+                      <div className="inline-flex items-center gap-1.5 text-amber-300 font-bold text-xs">
+                        <QrCode className="w-4 h-4" />
+                        <span>Authenticator Enrollment</span>
+                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={qrCodeUrl} alt="TOTP Enrollment QR Code" className="w-32 h-32 mx-auto rounded-xl border border-white/20 bg-white p-2" />
+                      <p className="text-[10px] font-mono text-white/70 break-all bg-black/50 p-2 rounded-lg border border-white/10">
+                        Secret: {secretToSave}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="text-center space-y-1 p-3 bg-black/30 rounded-2xl border border-white/15">
+                      <p className="text-xs text-emerald-300 font-bold flex items-center justify-center gap-1.5">
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Google Authenticator TOTP</span>
+                      </p>
+                      <p className="text-[11px] text-white/70">Enter 6-digit verification code</p>
+                    </div>
+                  )}
 
-            {/* TAB CONTENT 2: SUPER ADMIN LOGIN */}
-            {activeTab === "ADMIN" && (
-              <div className="space-y-5 animate-in fade-in zoom-in-95 duration-200">
-                <div className="space-y-1 text-center sm:text-left">
-                  <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Super Admin Master Console
-                  </h2>
-                  <p className="text-xs text-slate-400 font-medium">
-                    Isolated 2FA Multi-Tenant Governance Terminal
-                  </p>
-                </div>
-
-                {adminError && (
-                  <div className="p-3.5 bg-rose-950/90 border border-rose-800/90 text-rose-200 text-xs rounded-2xl font-semibold flex items-center gap-2.5 font-mono">
-                    <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
-                    <span>{adminError}</span>
+                  <div className="relative border-b border-white/40 py-1">
+                    <input
+                      type="text"
+                      required
+                      maxLength={6}
+                      pattern="[0-9]{6}"
+                      value={totpToken}
+                      onChange={(e) => setTotpToken(e.target.value)}
+                      placeholder="123456"
+                      className="w-full bg-transparent text-center font-mono text-xl tracking-widest text-emerald-300 placeholder-white/30 focus:outline-none py-1.5"
+                    />
                   </div>
-                )}
 
-                {adminStep === "CREDENTIALS" ? (
-                  <form onSubmit={handleAdminCredentials} className="space-y-4">
-                    <div className="space-y-1.5">
-                      <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                        Master Admin Email
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                          <Mail className="w-4 h-4" />
-                        </div>
-                        <input
-                          type="email"
-                          required
-                          value={adminEmail}
-                          onChange={(e) => setAdminEmail(e.target.value)}
-                          placeholder="admin@ecodigitech.com"
-                          className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-sm text-white placeholder-slate-600 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none font-medium transition-all"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
-                        Master Admin Password
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                          <Lock className="w-4 h-4" />
-                        </div>
-                        <input
-                          type={showAdminPassword ? "text" : "password"}
-                          required
-                          value={adminPassword}
-                          onChange={(e) => setAdminPassword(e.target.value)}
-                          placeholder="••••••••••••"
-                          className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-slate-600 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none font-medium transition-all"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowAdminPassword(!showAdminPassword)}
-                          className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
-                        >
-                          {showAdminPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                        </button>
-                      </div>
-                    </div>
-
+                  <div className="flex gap-2 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setAdminStep("CREDENTIALS")}
+                      className="w-1/3 bg-white/10 hover:bg-white/20 text-white text-xs py-3 rounded-full font-bold transition-colors cursor-pointer border border-white/20"
+                    >
+                      Back
+                    </button>
                     <button
                       type="submit"
                       disabled={adminLoading}
-                      className="w-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 disabled:opacity-50 text-white font-extrabold py-3.5 rounded-xl text-sm shadow-lg shadow-red-600/25 transition-all cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
+                      className="w-2/3 bg-gradient-to-r from-[#480d2d] to-[#3a62db] text-white font-bold tracking-widest text-xs py-3 rounded-full transition-all cursor-pointer shadow-lg border border-white/15 uppercase"
                     >
-                      {adminLoading ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span>Authenticating Master Key...</span>
-                        </>
-                      ) : (
-                        <>
-                          <KeyRound className="w-4 h-4" />
-                          <span>Authenticate &amp; Proceed 2FA</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </>
-                      )}
+                      {adminLoading ? "VERIFYING..." : "VERIFY & LOGIN"}
                     </button>
-                  </form>
-                ) : (
-                  <form onSubmit={handleAdminTotp} className="space-y-4 text-xs">
-                    {isEnrollment && qrCodeUrl ? (
-                      <div className="text-center space-y-3 p-4 bg-slate-950/90 rounded-2xl border border-amber-500/30">
-                        <div className="inline-flex items-center gap-1.5 text-amber-400 font-bold text-xs">
-                          <QrCode className="w-4 h-4" />
-                          <span>Initial Authenticator Enrollment</span>
-                        </div>
-                        <p className="text-[11px] text-slate-400">
-                          Scan QR code with Google Authenticator:
-                        </p>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={qrCodeUrl} alt="TOTP Enrollment QR Code" className="w-36 h-36 mx-auto rounded-xl border border-slate-800 bg-white p-2" />
-                        <p className="text-[10px] font-mono text-slate-500 break-all bg-slate-900 p-2 rounded-lg border border-slate-800">
-                          Secret: {secretToSave}
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="text-center space-y-1 p-3 bg-slate-950/50 rounded-2xl border border-slate-800">
-                        <p className="text-xs text-emerald-400 font-bold flex items-center justify-center gap-1.5">
-                          <CheckCircle2 className="w-4 h-4" />
-                          <span>Google Authenticator TOTP</span>
-                        </p>
-                        <p className="text-[11px] text-slate-400">Enter the 6-digit verification code from your authenticator app</p>
-                      </div>
-                    )}
-
-                    <div>
-                      <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5 text-center">
-                        6-Digit Security Code
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        maxLength={6}
-                        pattern="[0-9]{6}"
-                        value={totpToken}
-                        onChange={(e) => setTotpToken(e.target.value)}
-                        placeholder="123456"
-                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-xl tracking-widest text-emerald-400 placeholder-slate-700 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
-                      />
-                    </div>
-
-                    <div className="flex gap-2 pt-2">
-                      <button
-                        type="button"
-                        onClick={() => setAdminStep("CREDENTIALS")}
-                        className="w-1/3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs py-3 rounded-xl font-bold transition-colors cursor-pointer"
-                      >
-                        Back
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={adminLoading}
-                        className="w-2/3 bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white font-extrabold py-3 rounded-xl text-xs sm:text-sm transition-all cursor-pointer shadow-lg shadow-red-600/30 flex items-center justify-center gap-1.5"
-                      >
-                        {adminLoading ? "Verifying..." : "Verify & Log In"}
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
-            )}
-
-            {/* Footer Security Note */}
-            <div className="border-t border-slate-800/60 pt-4 text-center">
-              <p className="text-[11px] text-slate-500 font-medium">
-                🔒 EcoDigiTech Unified Multi-Tenant Security System
-              </p>
+                  </div>
+                </form>
+              )}
             </div>
-          </div>
-        </div>
+          )}
 
+          {/* EcoDigiTech Brand Footer */}
+          <div className="relative z-10 text-center pt-2">
+            <p className="text-[10px] text-white/50 tracking-wider uppercase font-medium">
+              EcoDigiTech POS Billing Software
+            </p>
+          </div>
+
+        </div>
       </div>
     </div>
   );
