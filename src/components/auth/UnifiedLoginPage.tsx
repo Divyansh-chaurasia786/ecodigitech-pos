@@ -211,8 +211,8 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                 </div>
 
                 {/* Remember Me & Forgot Password Row */}
-                <div className="flex items-center justify-between text-xs text-white/80 font-normal pt-1">
-                  <label className="flex items-center gap-2 cursor-pointer select-none">
+                <div className="flex items-center justify-between text-xs font-normal pt-1">
+                  <label className="flex items-center gap-2 cursor-pointer select-none text-white/80">
                     <input
                       type="checkbox"
                       checked={rememberMe}
@@ -224,7 +224,7 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
 
                   <Link
                     href="/pos/forgot-password"
-                    className="italic text-white/80 hover:text-white transition-colors hover:underline"
+                    className="font-bold text-violet-300 hover:text-white transition-colors hover:underline text-xs"
                   >
                     Forgot Password?
                   </Link>
@@ -245,6 +245,17 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                     <span>LOGIN</span>
                   )}
                 </button>
+
+                {/* Clear Forgot Password Helper */}
+                <div className="text-center pt-1">
+                  <Link
+                    href="/pos/forgot-password"
+                    className="text-xs text-white/70 hover:text-white font-semibold transition-colors hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>Forgot Password? Reset Store Account via OTP</span>
+                    <span>→</span>
+                  </Link>
+                </div>
               </form>
             </div>
           )}
