@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  User,
   Mail,
   Lock,
   Eye,
@@ -172,14 +173,14 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
               )}
 
               <form onSubmit={handleStoreLogin} className="space-y-6">
-                {/* Email ID Underline Input */}
+                {/* Store Username / Email Underline Input */}
                 <div className="relative border-b border-white/35 focus-within:border-white transition-colors py-1">
                   <div className="flex items-center gap-3">
-                    <Mail className="w-4 h-4 text-white/80 shrink-0" />
+                    <User className="w-4 h-4 text-white/80 shrink-0" />
                     <input
                       type="text"
                       required
-                      placeholder="Email ID or Store Phone"
+                      placeholder="Store Username or Email"
                       value={storeIdentifier}
                       onChange={(e) => setStoreIdentifier(e.target.value)}
                       className="w-full bg-transparent text-white placeholder-white/60 text-sm focus:outline-none font-medium py-1.5"
