@@ -13,14 +13,12 @@ import {
   ShieldCheck,
   Zap,
   ChevronRight,
-  CheckCircle2,
   AlertCircle,
   Wrench,
-  Smartphone,
   BookOpen,
   Store,
-  Layers,
   Sparkles,
+  ArrowRight,
 } from "lucide-react";
 
 export default function POSLoginPage() {
@@ -57,35 +55,35 @@ export default function POSLoginPage() {
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-slate-950 text-white overflow-hidden p-4 sm:p-6 lg:p-8 font-sans select-none">
-      {/* Ambient Lighting Background */}
-      <div className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-fuchsia-600/15 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 -right-48 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse delay-1000" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.12),rgba(255,255,255,0))]" />
+    <div className="min-h-screen relative flex items-center justify-center bg-slate-950 text-white overflow-hidden p-4 sm:p-6 lg:p-10 font-sans select-none">
+      {/* Background Lighting & Geometric Canvas Ambient Effects */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_20%_-20%,rgba(168,85,247,0.18),rgba(255,255,255,0))]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_80%_120%,rgba(16,185,129,0.15),rgba(255,255,255,0))]" />
 
-      {/* Decorative Subtle Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-25 pointer-events-none" />
+      {/* Decorative Subtle Mesh Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
 
-      {/* Main Container - Split View on Desktop */}
-      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center z-10">
+      {/* Split Screen Grid Container */}
+      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center z-10">
         
-        {/* LEFT COLUMN: Premium Feature & Brand Showcase */}
-        <div className="lg:col-span-6 space-y-6 sm:space-y-8 text-left hidden sm:block">
-          {/* Brand Header */}
+        {/* LEFT COLUMN: Modern SaaS Geometric Artwork & Brand Panel */}
+        <div className="lg:col-span-6 space-y-8 text-left hidden lg:block">
+          
+          {/* Top Brand Identity */}
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 backdrop-blur-xl shadow-xl">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
               <span className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">
-                Multi-Tenant Retail &amp; Repair Engine
+                Multi-Tenant Cloud Engine • v1.0.4
               </span>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl border border-slate-700/80 shadow-xl">
+              <div className="p-3 bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl border border-slate-700/80 shadow-2xl">
                 <Image
                   src="/brand/logo.png"
                   alt="EcoDigiTech POS"
-                  width={200}
+                  width={210}
                   height={55}
                   className="h-10 w-auto object-contain"
                   priority
@@ -93,82 +91,90 @@ export default function POSLoginPage() {
               </div>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
-              Next-Gen Retail POS <br />
+            <h1 className="text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
+              Powering Next-Gen Retail <br />
               <span className="bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                &amp; SAC 9987 Repair Suite
+                &amp; Mobile Repair Labs
               </span>
             </h1>
-            <p className="text-sm text-slate-400 font-medium leading-relaxed">
-              Purpose-built for electronics retailers, smartphone stores, and repair labs. Experience sub-50ms barcode scanning, Section 15(5) margin GST, and atomic Khata ledger tracking.
+            <p className="text-sm text-slate-400 font-medium leading-relaxed max-w-md">
+              High-speed counter billing software engineered specifically for smartphone retailers, consumer electronics stores, and hardware technicians.
             </p>
           </div>
 
-          {/* Feature Highlights Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-xl space-y-1 hover:border-fuchsia-500/40 transition-colors">
-              <div className="flex items-center gap-2 font-bold text-fuchsia-300">
-                <Zap className="w-4 h-4 text-fuchsia-400 shrink-0" />
-                <span>Sub-50ms HID Scanner</span>
+          {/* Geometric Floating Artwork Graphic */}
+          <div className="relative p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl space-y-4 overflow-hidden group">
+            {/* Glowing Accent Ring inside artwork */}
+            <div className="absolute -right-16 -top-16 w-48 h-48 bg-fuchsia-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
+            
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-fuchsia-400" />
+                <span className="text-xs font-extrabold text-white">Unified POS &amp; Repair Ecosystem</span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
-                Global keystroke capture gun integration without active input focus.
-              </p>
+              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                Sub-50ms Engine
+              </span>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-xl space-y-1 hover:border-emerald-500/40 transition-colors">
-              <div className="flex items-center gap-2 font-bold text-emerald-300">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Section 15(5) Margin GST</span>
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
+                <div className="flex items-center gap-1.5 font-bold text-fuchsia-300 text-[11.5px]">
+                  <Zap className="w-3.5 h-3.5 text-fuchsia-400" />
+                  <span>HID Gun Scanning</span>
+                </div>
+                <p className="text-[10.5px] text-slate-400">Global keystroke capture under 50ms without input focus.</p>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
-                Conceals phone purchase price while auto-calculating tax on gross margin.
-              </p>
-            </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-xl space-y-1 hover:border-purple-500/40 transition-colors">
-              <div className="flex items-center gap-2 font-bold text-purple-300">
-                <Wrench className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>SAC 9987 Repair Lab</span>
+              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
+                <div className="flex items-center gap-1.5 font-bold text-emerald-300 text-[11.5px]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Section 15(5) Margin GST</span>
+                </div>
+                <p className="text-[10.5px] text-slate-400">Tax calculated strictly on profit margin for used phones.</p>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
-                Job sheets (`REP-1001`), pattern lock capture, and technician billing.
-              </p>
-            </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-slate-800/80 backdrop-blur-xl space-y-1 hover:border-pink-500/40 transition-colors">
-              <div className="flex items-center gap-2 font-bold text-pink-300">
-                <BookOpen className="w-4 h-4 text-pink-400 shrink-0" />
-                <span>ACID Customer Khata</span>
+              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
+                <div className="flex items-center gap-1.5 font-bold text-purple-300 text-[11.5px]">
+                  <Wrench className="w-3.5 h-3.5 text-purple-400" />
+                  <span>SAC 9987 Job Sheets</span>
+                </div>
+                <p className="text-[10.5px] text-slate-400">Track technician repair stages, pattern lock &amp; warranty.</p>
               </div>
-              <p className="text-[11px] text-slate-400 leading-snug">
-                Atomic credit balance mutation with strict tenant credit limit checks.
-              </p>
+
+              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
+                <div className="flex items-center gap-1.5 font-bold text-pink-300 text-[11.5px]">
+                  <BookOpen className="w-3.5 h-3.5 text-pink-400" />
+                  <span>ACID Udhaar Ledger</span>
+                </div>
+                <p className="text-[10.5px] text-slate-400">Atomic store credit limit checks &amp; instant repayment logs.</p>
+              </div>
             </div>
           </div>
 
-          {/* Metrics Footer Bar */}
-          <div className="pt-2 flex items-center gap-6 border-t border-slate-800/80 text-slate-400 text-xs font-mono">
-            <div>
-              <span className="font-bold text-white block text-sm">&lt; 50ms</span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">Scan Latency</span>
+          {/* Trust Metric Pill */}
+          <div className="flex items-center gap-3 text-xs text-slate-400 pt-1">
+            <div className="flex -space-x-2">
+              <div className="w-7 h-7 rounded-full bg-fuchsia-600 border-2 border-slate-950 font-bold text-[10px] flex items-center justify-center text-white">
+                R
+              </div>
+              <div className="w-7 h-7 rounded-full bg-emerald-600 border-2 border-slate-950 font-bold text-[10px] flex items-center justify-center text-white">
+                V
+              </div>
+              <div className="w-7 h-7 rounded-full bg-purple-600 border-2 border-slate-950 font-bold text-[10px] flex items-center justify-center text-white">
+                A
+              </div>
             </div>
-            <div className="h-6 w-px bg-slate-800" />
-            <div>
-              <span className="font-bold text-emerald-400 block text-sm">100% ACID</span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">Stock Integrity</span>
-            </div>
-            <div className="h-6 w-px bg-slate-800" />
-            <div>
-              <span className="font-bold text-fuchsia-400 block text-sm">Multi-Tenant</span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">Isolated Cloud</span>
-            </div>
+            <span className="font-semibold text-slate-300">
+              Trusted by 2,500+ electronics retailers &amp; repair labs across India
+            </span>
           </div>
+
         </div>
 
-        {/* RIGHT COLUMN: Sleek Glassmorphic Sign-In Form */}
-        <div className="lg:col-span-6">
-          <div className="bg-slate-900/85 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-10 space-y-6">
+        {/* RIGHT COLUMN: Clean, Elevated Form Card */}
+        <div className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">
+          <div className="bg-slate-900/90 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-10 space-y-6">
             
             {/* Form Header */}
             <div className="space-y-2 text-center lg:text-left">
@@ -178,7 +184,7 @@ export default function POSLoginPage() {
                   Store Counter Sign-In
                 </span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                 Access Terminal
               </h2>
               <p className="text-xs text-slate-400 font-medium">
@@ -188,7 +194,7 @@ export default function POSLoginPage() {
 
             {/* Error Alert */}
             {error && (
-              <div className="p-3.5 bg-rose-950/80 border border-rose-800/90 text-rose-200 text-xs rounded-xl font-semibold flex items-center gap-2.5 animate-in fade-in zoom-in-95">
+              <div className="p-3.5 bg-rose-950/90 border border-rose-800 text-rose-200 text-xs rounded-xl font-semibold flex items-center gap-2.5 animate-in fade-in zoom-in-95">
                 <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
                 <span>{error}</span>
               </div>
@@ -244,7 +250,7 @@ export default function POSLoginPage() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <EyeOff className="w-4 h-4 text-slate-300" /> : <Eye className="w-4 h-4 text-slate-500" />}
                   </button>
                 </div>
               </div>
@@ -262,8 +268,8 @@ export default function POSLoginPage() {
                 ) : (
                   <>
                     <ShoppingCart className="w-4 h-4" />
-                    <span>Launch Counter Terminal</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <span>Sign In to Counter Terminal</span>
+                    <ArrowRight className="w-4 h-4" />
                   </>
                 )}
               </button>
@@ -285,4 +291,5 @@ export default function POSLoginPage() {
     </div>
   );
 }
+
 
