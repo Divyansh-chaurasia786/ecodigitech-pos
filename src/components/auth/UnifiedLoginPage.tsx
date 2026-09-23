@@ -140,18 +140,25 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
           <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-rose-500/15 via-purple-500/10 to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
 
-          {/* TOP LOGO EMBLEM BADGE (Replacing Avatar & Admin Switcher) */}
-          <div className="relative z-10 flex flex-col items-center pt-2">
-            <div className="p-4 bg-white/10 rounded-2xl border border-white/20 shadow-xl backdrop-blur-md">
+          {/* ELEGANT FLOATING BRAND LOGO HEADER (Seamless, No Box Enclosure) */}
+          <div className="relative z-10 flex flex-col items-center space-y-2 pt-1">
+            <div className="relative group">
+              {/* Soft Ambient Radial Glow behind Logo */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 via-fuchsia-500/30 to-blue-500/30 rounded-full blur-xl opacity-80 pointer-events-none" />
+              
               <Image
                 src="/brand/logo.png"
                 alt="EcoDigiTech POS"
-                width={180}
-                height={50}
-                className="h-10 w-auto object-contain"
+                width={210}
+                height={55}
+                className="h-11 w-auto object-contain relative z-10 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]"
                 priority
               />
             </div>
+            
+            <p className="text-[11px] font-semibold tracking-[0.22em] text-white/75 uppercase pt-1 font-sans">
+              Store Counter Terminal
+            </p>
           </div>
 
           {/* STORE POS LOGIN FORM */}
