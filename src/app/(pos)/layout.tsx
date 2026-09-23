@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { usePathname } from "next/navigation";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { Header } from "@/components/pos/Header";
 import { PosFooter } from "@/components/pos/PosFooter";
@@ -8,6 +11,22 @@ export default function POSLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isAuthPage =
+    pathname === "/pos/login" ||
+    pathname === "/pos/forgot-password" ||
+    pathname === "/pos";
+
+  if (isAuthPage) {
+    return (
+      <ThemeProvider>
+        <div className="min-h-screen w-screen bg-slate-950 text-white font-sans antialiased overflow-x-hidden">
+          {children}
+        </div>
+      </ThemeProvider>
+    );
+  }
+
   return (
     <ThemeProvider>
       <div className="h-screen w-screen max-h-screen overflow-hidden flex flex-col bg-[#F8FAFC] text-slate-900 font-sans antialiased selection:bg-fuchsia-500 selection:text-white">
