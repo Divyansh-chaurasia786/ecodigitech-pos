@@ -140,23 +140,23 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
           <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-rose-500/15 via-purple-500/10 to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
 
-          {/* ELEGANT FLOATING BRAND LOGO HEADER (Seamless, No Box Enclosure) */}
-          <div className="relative z-10 flex flex-col items-center space-y-2 pt-1">
-            <div className="relative group">
+          {/* ELEGANT FLOATING BRAND LOGO HEADER (Seamless, Prominent Logo) */}
+          <div className="relative z-10 flex flex-col items-center space-y-2 pt-2">
+            <div className="relative group flex justify-center">
               {/* Soft Ambient Radial Glow behind Logo */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 via-fuchsia-500/30 to-blue-500/30 rounded-full blur-xl opacity-80 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/35 via-fuchsia-500/35 to-blue-500/35 rounded-full blur-2xl opacity-90 pointer-events-none" />
               
               <Image
                 src="/brand/logo.png"
                 alt="EcoDigiTech POS"
-                width={210}
-                height={55}
-                className="h-11 w-auto object-contain relative z-10 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]"
+                width={320}
+                height={85}
+                className="h-16 sm:h-20 w-auto object-contain relative z-10 drop-shadow-[0_6px_20px_rgba(0,0,0,0.6)]"
                 priority
               />
             </div>
             
-            <p className="text-[11px] font-semibold tracking-[0.22em] text-white/75 uppercase pt-1 font-sans">
+            <p className="text-[11px] font-bold tracking-[0.25em] text-white/80 uppercase pt-1 font-sans">
               Store Counter Terminal
             </p>
           </div>
