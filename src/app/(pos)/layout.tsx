@@ -15,7 +15,8 @@ export default function POSLayout({
   const isAuthPage =
     pathname === "/pos/login" ||
     pathname === "/pos/forgot-password" ||
-    pathname === "/pos";
+    pathname === "/pos" ||
+    pathname === "/login";
 
   if (isAuthPage) {
     return (
