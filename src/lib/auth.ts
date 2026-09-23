@@ -102,7 +102,15 @@ export async function setPosSessionCookie(token: string): Promise<void> {
  */
 export async function clearAdminSessionCookie(): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.delete(ADMIN_COOKIE_NAME);
+  cookieStore.set(ADMIN_COOKIE_NAME, "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 0,
+    expires: new Date(0),
+  });
+  cookieStore.delete({ name: ADMIN_COOKIE_NAME, path: "/" });
 }
 
 /**
@@ -110,7 +118,15 @@ export async function clearAdminSessionCookie(): Promise<void> {
  */
 export async function clearPosSessionCookie(): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.delete(POS_COOKIE_NAME);
+  cookieStore.set(POS_COOKIE_NAME, "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 0,
+    expires: new Date(0),
+  });
+  cookieStore.delete({ name: POS_COOKIE_NAME, path: "/" });
 }
 
 /**
@@ -126,7 +142,7 @@ export async function getAdminSession(): Promise<AdminJWTPayload | null> {
 /**
  * Get current POS Merchant/Cashier user session from cookies
  */
-export async function getPosSession(): Promise<PosJWTPayload> {
+export async function getPosSession(): Promise<PosJWTPayload | null> {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get(POS_COOKIE_NAME)?.value;
@@ -138,11 +154,5 @@ export async function getPosSession(): Promise<PosJWTPayload> {
     // Ignore cookie retrieval errors
   }
 
-  // Default full-authority session for any store/terminal instance
-  return {
-    userId: "usr_store_master_001",
-    tenantId: "tenant-demo-001",
-    email: "store@ecodigitech.com",
-    role: "MERCHANT_OWNER",
-  };
+  return null;
 }

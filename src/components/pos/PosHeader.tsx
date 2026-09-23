@@ -69,10 +69,12 @@ export function PosHeader({
 
   async function handleSignOut() {
     try {
+      localStorage.removeItem("pos_user");
+      localStorage.removeItem("pos_session");
       await fetch("/api/pos/auth/logout", { method: "POST" });
-      router.push("/pos/login");
-      router.refresh();
-    } catch {
+    } catch (err) {
+      console.error("Sign out request error:", err);
+    } finally {
       window.location.href = "/pos/login";
     }
   }

@@ -119,10 +119,12 @@ export function Header() {
 
   async function handleLogout() {
     try {
+      localStorage.removeItem("pos_user");
+      localStorage.removeItem("pos_session");
       await fetch("/api/pos/auth/logout", { method: "POST" });
-      router.push("/pos/login");
-      router.refresh();
-    } catch {
+    } catch (err) {
+      console.error("Logout request error:", err);
+    } finally {
       window.location.href = "/pos/login";
     }
   }
