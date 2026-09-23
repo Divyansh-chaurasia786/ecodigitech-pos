@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: ecodigitech_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ecodigi_admin
+      POSTGRES_PASSWORD: ecodigi_secure_password_2026
+      POSTGRES_DB: ecodigitech_pos_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecodigi_admin -d ecodigitech_pos_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ecodigitech_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/var/lib/redis/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecodigitech_pos_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: "postgresql://ecodigi_admin:ecodigi_secure_password_2026@db:5432/ecodigitech_pos_db?schema=public"
+      REDIS_URL: "redis://redis:6379"
+      JWT_SECRET: "ecodigitech_super_secure_jwt_secret_key_2026"
+      ENCRYPTION_KEY: "0123456789abcdef0123456789abcdef"
+      NEXT_PUBLIC_APP_DOMAIN: "ecodigitech.com"
+      PORT: 3000
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

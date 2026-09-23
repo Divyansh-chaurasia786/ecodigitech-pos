@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Print Utilities & Hardware Page-Break Enforcement */
+@media print {
+  /* Hide screen elements during print */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Expose ONLY the active printable container */
+  #printable-receipt-container,
+  #printable-receipt-container *,
+  .printable-active-target,
+  .printable-active-target * {
+    visibility: visible !important;
+  }
+
+  /* Explicitly hide any inactive background invoices to prevent overlapping */
+  .a4-gst-invoice:not(#printable-receipt-container):not(.printable-active-target),
+  .legal-intake-voucher:not(#printable-receipt-container):not(.printable-active-target),
+  .thermal-receipt:not(#printable-receipt-container):not(.printable-active-target) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  #printable-receipt-container,
+  .printable-active-target {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    display: block !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .thermal-receipt {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    width: 78mm !important;
+    max-width: 78mm !important;
+    margin: 0 auto !important;
+    padding: 3mm 2mm !important;
+    box-sizing: border-box !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+
+  .a4-gst-invoice:not(.thermal-80mm) {
+    position: absolute !important;
+    top: 3mm !important;
+    left: 4mm !important;
+    right: 4mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 200mm !important;
+    max-width: 200mm !important;
+    height: 280mm !important;
+    max-height: 280mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border: 1.5px solid #000000 !important;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  .a4-gst-invoice.thermal-80mm {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 78mm !important;
+    max-width: 78mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 2mm !important;
+    box-sizing: border-box !important;
+    border: 1.5px solid #000000 !important;
+    line-height: 1.3 !important;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background: #ffffff !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .legal-intake-voucher {
+    position: absolute !important;
+    top: 4mm !important;
+    left: 4mm !important;
+    right: 4mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 200mm !important;
+    max-width: 200mm !important;
+    height: 280mm !important;
+    max-height: 280mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border: 1.5px solid #000000 !important;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+}

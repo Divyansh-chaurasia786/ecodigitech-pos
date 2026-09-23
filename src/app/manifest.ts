@@ -1,0 +1,39 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "EcoDigiTech POS",
+    short_name: "EcoDigiTech POS",
+    description: "Multi-Store Mobile POS, Retail Billing, Repairs & Intake Management Software",
+    start_url: "/pos/billing",
+    scope: "/",
+    id: "/pos/billing",
+    display: "standalone",
+    display_override: ["window-controls-overlay", "standalone", "minimal-ui"],
+    orientation: "any",
+    background_color: "#0f172a",
+    theme_color: "#c026d3",
+    prefer_related_applications: false,
+    icons: [
+      {
+        src: "/logo.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/logo.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/logo.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
+    ],
+    categories: ["business", "finance", "productivity", "utilities"],
+  };
+}
