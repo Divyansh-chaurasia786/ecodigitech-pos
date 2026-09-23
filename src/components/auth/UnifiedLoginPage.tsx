@@ -12,11 +12,14 @@ import {
   AlertCircle,
   QrCode,
   CheckCircle2,
+  ShieldAlert,
+  X,
 } from "lucide-react";
 
 export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE" | "ADMIN" }) {
   const [activeTab, setActiveTab] = useState<"STORE" | "ADMIN">(initialTab);
   const [rememberMe, setRememberMe] = useState(true);
+  const [showForgotModal, setShowForgotModal] = useState(false);
 
   // --- STORE POS STATE ---
   const [storeIdentifier, setStoreIdentifier] = useState("");
@@ -222,12 +225,13 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                     <span>Remember me</span>
                   </label>
 
-                  <Link
-                    href="/pos/forgot-password"
-                    className="font-bold text-violet-300 hover:text-white transition-colors hover:underline text-xs"
+                  <button
+                    type="button"
+                    onClick={() => setShowForgotModal(true)}
+                    className="font-bold text-violet-300 hover:text-white transition-colors hover:underline text-xs cursor-pointer"
                   >
                     Forgot Password?
-                  </Link>
+                  </button>
                 </div>
 
                 {/* Glowing Multi-Color Gradient Action Button */}
@@ -248,13 +252,14 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
 
                 {/* Clear Forgot Password Helper */}
                 <div className="text-center pt-1">
-                  <Link
-                    href="/pos/forgot-password"
-                    className="text-xs text-white/70 hover:text-white font-semibold transition-colors hover:underline inline-flex items-center gap-1"
+                  <button
+                    type="button"
+                    onClick={() => setShowForgotModal(true)}
+                    className="text-xs text-white/70 hover:text-white font-semibold transition-colors hover:underline inline-flex items-center gap-1 cursor-pointer"
                   >
-                    <span>Forgot Password? Reset Store Account via OTP</span>
+                    <span>Forgot Password? Contact Admin</span>
                     <span>→</span>
-                  </Link>
+                  </button>
                 </div>
               </form>
             </div>
@@ -396,6 +401,55 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
 
         </div>
       </div>
+
+      {/* FORGOT PASSWORD FORMAL ADMIN NOTICE MODAL */}
+      {showForgotModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative w-full max-w-md backdrop-blur-3xl bg-[#160b2b]/95 border border-white/20 rounded-[32px] p-7 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.85)] text-center space-y-5 overflow-hidden">
+            {/* Soft Top Inner Ambient Light */}
+            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-amber-500/20 via-purple-500/10 to-transparent pointer-events-none" />
+
+            {/* Close Icon */}
+            <button
+              type="button"
+              onClick={() => setShowForgotModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer z-10"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Shield Icon Badge */}
+            <div className="relative z-10 w-16 h-16 mx-auto rounded-2xl bg-amber-500/15 border border-amber-400/30 flex items-center justify-center text-amber-300 shadow-[0_0_25px_rgba(245,158,11,0.25)]">
+              <ShieldAlert className="w-8 h-8" />
+            </div>
+
+            {/* Title & Body Content */}
+            <div className="relative z-10 space-y-2">
+              <h3 className="text-lg font-bold text-white tracking-tight">
+                Store Password Reset Notice
+              </h3>
+              <p className="text-xs text-white/80 leading-relaxed font-normal">
+                For security & access control, store terminal accounts cannot self-reset passwords from this counter interface.
+              </p>
+              <div className="p-3.5 bg-white/[0.06] rounded-2xl border border-white/15 text-xs text-violet-200 font-medium leading-relaxed mt-3">
+                Please request your <strong className="text-white font-bold">Store Administrator</strong> or <strong className="text-white font-bold">System Admin</strong> to update your credentials from the Admin Control Panel.
+              </div>
+            </div>
+
+            {/* Action Button */}
+            <div className="relative z-10 pt-2">
+              <button
+                type="button"
+                onClick={() => setShowForgotModal(false)}
+                className="w-full bg-gradient-to-r from-[#480d2d] via-[#35104e] to-[#3a62db] hover:from-[#581138] hover:to-[#456ef0] text-white font-bold text-xs uppercase tracking-widest py-3.5 rounded-full shadow-lg border border-white/20 transition-all cursor-pointer active:scale-[0.98]"
+              >
+                Understand & Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
