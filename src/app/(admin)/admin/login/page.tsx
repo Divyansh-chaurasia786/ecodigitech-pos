@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 import {
   ShieldAlert,
@@ -10,12 +11,11 @@ import {
   Mail,
   Eye,
   EyeOff,
-  Terminal,
-  Zap,
   ArrowRight,
   QrCode,
   CheckCircle2,
   AlertCircle,
+  Store,
 } from "lucide-react";
 
 export default function SuperAdminLoginPage() {
@@ -95,92 +95,70 @@ export default function SuperAdminLoginPage() {
     }
   }
 
-  function handleQuickAdminFill() {
-    setEmail("admin@ecodigitech.com");
-    setPassword("Admin123!Password");
-    setError("");
-  }
-
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-slate-950 text-white overflow-hidden p-4 sm:p-6 font-sans select-none">
+    <div className="min-h-screen relative flex items-center justify-center bg-[#07090e] text-slate-100 overflow-hidden p-4 sm:p-6 font-sans select-none">
       {/* Dynamic Security Ambient Glow */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none animate-pulse" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none animate-pulse delay-1000" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-red-600/15 rounded-full blur-[128px] pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-emerald-600/15 rounded-full blur-[128px] pointer-events-none animate-pulse delay-1000" />
 
       {/* Decorative Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
 
-      <div className="relative w-full max-w-lg z-10 space-y-6">
-        {/* Isolated Security Badge */}
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/80 border border-red-800/80 text-red-400 backdrop-blur-xl shadow-2xl">
-            <ShieldAlert className="w-4 h-4 animate-bounce" />
-            <span className="text-[11px] font-mono font-bold uppercase tracking-widest">
-              Isolated Security Governance Terminal
-            </span>
+      <div className="relative w-full max-w-md z-10 space-y-6">
+        
+        {/* Top Switcher Bar */}
+        <div className="flex items-center justify-between bg-slate-900/80 border border-slate-800/80 backdrop-blur-xl p-1.5 rounded-full shadow-2xl">
+          <Link
+            href="/pos/login"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all text-xs font-semibold cursor-pointer group"
+          >
+            <Store className="w-3.5 h-3.5 text-violet-400 group-hover:scale-110 transition-transform" />
+            <span>Store POS Sign-In</span>
+          </Link>
+
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg text-xs font-bold">
+            <ShieldAlert className="w-3.5 h-3.5" />
+            <span>Super Admin Console</span>
           </div>
         </div>
 
         {/* Master Admin Card */}
-        <div className="bg-slate-900/85 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-10 space-y-6">
+        <div className="bg-slate-900/80 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
           {/* Brand Header */}
           <div className="text-center space-y-3">
-            <div className="flex justify-center items-center">
-              <div className="p-2 bg-slate-950 rounded-2xl border border-slate-800 shadow-md">
-                <Image
-                  src="/brand/logo.png"
-                  alt="EcoDigiTech POS"
-                  width={170}
-                  height={45}
-                  className="h-9 w-auto object-contain"
-                  priority
-                />
-              </div>
+            <div className="inline-flex p-3 bg-slate-950/80 rounded-2xl border border-slate-800 shadow-inner">
+              <Image
+                src="/brand/logo.png"
+                alt="EcoDigiTech POS"
+                width={160}
+                height={42}
+                className="h-9 w-auto object-contain"
+                priority
+              />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              <h1 className="text-2xl font-black text-white tracking-tight">
                 Super Admin Master Console
               </h1>
               <p className="text-xs text-slate-400 font-medium mt-1">
-                Multi-Tenant Tenant Provisioning, TOTP Governance &amp; Subscriptions
+                Isolated 2FA Multi-Tenant Governance Terminal
               </p>
             </div>
           </div>
 
-          {/* Quick Fill Demo Helper */}
-          <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-3 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
-                <Zap className="w-3.5 h-3.5" />
-              </div>
-              <div className="truncate">
-                <p className="text-xs font-bold text-slate-200">Local Dev Master Admin?</p>
-                <p className="text-[10.5px] text-slate-400 font-mono truncate">admin@ecodigitech.com</p>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={handleQuickAdminFill}
-              className="px-3 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 font-extrabold text-xs transition-colors shrink-0 cursor-pointer border border-slate-700 active:scale-95"
-            >
-              Fill Credentials
-            </button>
-          </div>
-
           {/* Error Alert */}
           {error && (
-            <div className="p-3.5 bg-rose-950/80 border border-rose-800/90 text-rose-200 text-xs rounded-xl font-semibold flex items-center gap-2.5 animate-in fade-in zoom-in-95 font-mono">
+            <div className="p-3.5 bg-rose-950/90 border border-rose-800/90 text-rose-200 text-xs rounded-2xl font-semibold flex items-center gap-2.5 animate-in fade-in zoom-in-95 font-mono">
               <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {step === "CREDENTIALS" ? (
-            <form onSubmit={handleCredentialsSubmit} className="space-y-4 text-xs">
-              <div>
-                <label className="block font-bold text-slate-300 mb-1.5 uppercase text-[10.5px] tracking-wider">
-                  Master Email Address *
+            <form onSubmit={handleCredentialsSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                  Master Email Address
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
@@ -192,14 +170,14 @@ export default function SuperAdminLoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@ecodigitech.com"
-                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-white placeholder-slate-600 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 focus:outline-none font-medium transition-colors"
+                    className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-sm text-white placeholder-slate-600 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none font-medium transition-all"
                   />
                 </div>
               </div>
 
-              <div>
-                <label className="block font-bold text-slate-300 mb-1.5 uppercase text-[10.5px] tracking-wider">
-                  Master Password *
+              <div className="space-y-1.5">
+                <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                  Master Password
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
@@ -211,7 +189,7 @@ export default function SuperAdminLoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
-                    className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-white placeholder-slate-600 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 focus:outline-none font-medium transition-colors"
+                    className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-slate-600 focus:border-red-500 focus:ring-1 focus:ring-red-500 focus:outline-none font-medium transition-all"
                   />
                   <button
                     type="button"
@@ -226,7 +204,7 @@ export default function SuperAdminLoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-black py-3.5 rounded-xl text-xs sm:text-sm shadow-lg shadow-emerald-600/30 transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 disabled:opacity-50 text-white font-extrabold py-3.5 rounded-xl text-sm shadow-lg shadow-red-600/25 transition-all cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
               >
                 {loading ? (
                   <>
@@ -296,7 +274,7 @@ export default function SuperAdminLoginPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-2/3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-black py-3 rounded-xl text-xs sm:text-sm transition-all cursor-pointer shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-1.5"
+                  className="w-2/3 bg-red-600 hover:bg-red-500 disabled:opacity-50 text-white font-extrabold py-3 rounded-xl text-xs sm:text-sm transition-all cursor-pointer shadow-lg shadow-red-600/30 flex items-center justify-center gap-1.5"
                 >
                   {loading ? "Verifying..." : "Verify & Log In"}
                 </button>
@@ -304,10 +282,26 @@ export default function SuperAdminLoginPage() {
             </form>
           )}
 
+          {/* Return to Store POS Sign-In link */}
+          <div className="pt-2">
+            <div className="p-3 bg-slate-950/60 border border-slate-800/80 rounded-2xl flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2">
+                <Store className="w-4 h-4 text-violet-400 shrink-0" />
+                <span className="text-slate-400 font-medium">Not a Super Admin?</span>
+              </div>
+              <Link
+                href="/pos/login"
+                className="text-violet-400 hover:text-violet-300 font-bold hover:underline transition-colors"
+              >
+                Go to Store POS Login →
+              </Link>
+            </div>
+          </div>
+
           {/* Security Rules Footer */}
           <div className="border-t border-slate-800/80 pt-4 text-center">
             <p className="text-[11px] text-slate-500 leading-relaxed font-mono">
-              🔒 Isolated Environment. No public password reset endpoints exist. CLI recovery: <code className="text-slate-400">scripts/reset-superadmin.ts</code>
+              🔒 Isolated Admin Governance Environment
             </p>
           </div>
         </div>

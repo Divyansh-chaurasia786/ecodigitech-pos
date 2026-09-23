@@ -5,20 +5,14 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  ShoppingCart,
   Lock,
   Mail,
   Eye,
   EyeOff,
-  ShieldCheck,
-  Zap,
-  ChevronRight,
-  AlertCircle,
-  Wrench,
-  BookOpen,
-  Store,
-  Sparkles,
+  ShieldAlert,
   ArrowRight,
+  AlertCircle,
+  Store,
 } from "lucide-react";
 
 export default function POSLoginPage() {
@@ -55,235 +49,162 @@ export default function POSLoginPage() {
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center bg-slate-950 text-white overflow-hidden p-4 sm:p-6 lg:p-10 font-sans select-none">
-      {/* Background Lighting & Geometric Canvas Ambient Effects */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_20%_-20%,rgba(168,85,247,0.18),rgba(255,255,255,0))]" />
-      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_80%_80%_at_80%_120%,rgba(16,185,129,0.15),rgba(255,255,255,0))]" />
+    <div className="min-h-screen relative flex items-center justify-center bg-[#07090e] text-slate-100 overflow-hidden p-4 sm:p-6 font-sans select-none">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px] pointer-events-none animate-pulse" />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-fuchsia-600/15 rounded-full blur-[128px] pointer-events-none animate-pulse delay-1000" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* Decorative Subtle Mesh Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
+      {/* Decorative Subtle Grid overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
 
-      {/* Split Screen Grid Container */}
-      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center z-10">
+      <div className="relative w-full max-w-md z-10 space-y-6">
         
-        {/* LEFT COLUMN: Modern SaaS Geometric Artwork & Brand Panel */}
-        <div className="lg:col-span-6 space-y-8 text-left hidden lg:block">
-          
-          {/* Top Brand Identity */}
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 backdrop-blur-xl shadow-xl">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
-              <span className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">
-                Multi-Tenant Cloud Engine • v1.0.4
-              </span>
-            </div>
+        {/* Top Portal Switcher Bar */}
+        <div className="flex items-center justify-between bg-slate-900/80 border border-slate-800/80 backdrop-blur-xl p-1.5 rounded-full shadow-2xl">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg text-xs font-bold">
+            <Store className="w-3.5 h-3.5" />
+            <span>Store POS Sign-In</span>
+          </div>
 
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl border border-slate-700/80 shadow-2xl">
-                <Image
-                  src="/brand/logo.png"
-                  alt="EcoDigiTech POS"
-                  width={210}
-                  height={55}
-                  className="h-10 w-auto object-contain"
-                  priority
+          <Link
+            href="/admin/login"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all text-xs font-semibold cursor-pointer group"
+          >
+            <ShieldAlert className="w-3.5 h-3.5 text-rose-400 group-hover:scale-110 transition-transform" />
+            <span>Super Admin Portal</span>
+            <ArrowRight className="w-3 h-3 text-slate-500 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+        </div>
+
+        {/* Main Card */}
+        <div className="bg-slate-900/80 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
+          
+          {/* Brand & Title */}
+          <div className="text-center space-y-3">
+            <div className="inline-flex p-3 bg-slate-950/80 rounded-2xl border border-slate-800 shadow-inner">
+              <Image
+                src="/brand/logo.png"
+                alt="EcoDigiTech POS"
+                width={160}
+                height={42}
+                className="h-9 w-auto object-contain"
+                priority
+              />
+            </div>
+            <div>
+              <h1 className="text-2xl font-black text-white tracking-tight">
+                Counter Terminal Login
+              </h1>
+              <p className="text-xs text-slate-400 font-medium mt-1">
+                Sign in to your store billing workstation
+              </p>
+            </div>
+          </div>
+
+          {/* Error Banner */}
+          {error && (
+            <div className="p-3.5 bg-rose-950/90 border border-rose-800/90 text-rose-200 text-xs rounded-2xl font-semibold flex items-center gap-2.5 animate-in fade-in zoom-in-95">
+              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="space-y-1.5">
+              <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                Email Address or Store Phone
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. store@ecodigitech.com or 9876543210"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3 text-sm text-white placeholder-slate-600 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none font-medium transition-all"
                 />
               </div>
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
-              Powering Next-Gen Retail <br />
-              <span className="bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                &amp; Mobile Repair Labs
-              </span>
-            </h1>
-            <p className="text-sm text-slate-400 font-medium leading-relaxed max-w-md">
-              High-speed counter billing software engineered specifically for smartphone retailers, consumer electronics stores, and hardware technicians.
-            </p>
-          </div>
-
-          {/* Geometric Floating Artwork Graphic */}
-          <div className="relative p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-2xl shadow-2xl space-y-4 overflow-hidden group">
-            {/* Glowing Accent Ring inside artwork */}
-            <div className="absolute -right-16 -top-16 w-48 h-48 bg-fuchsia-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
-            
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-fuchsia-400" />
-                <span className="text-xs font-extrabold text-white">Unified POS &amp; Repair Ecosystem</span>
-              </div>
-              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                Sub-50ms Engine
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-fuchsia-300 text-[11.5px]">
-                  <Zap className="w-3.5 h-3.5 text-fuchsia-400" />
-                  <span>HID Gun Scanning</span>
-                </div>
-                <p className="text-[10.5px] text-slate-400">Global keystroke capture under 50ms without input focus.</p>
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-emerald-300 text-[11.5px]">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Section 15(5) Margin GST</span>
-                </div>
-                <p className="text-[10.5px] text-slate-400">Tax calculated strictly on profit margin for used phones.</p>
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-purple-300 text-[11.5px]">
-                  <Wrench className="w-3.5 h-3.5 text-purple-400" />
-                  <span>SAC 9987 Job Sheets</span>
-                </div>
-                <p className="text-[10.5px] text-slate-400">Track technician repair stages, pattern lock &amp; warranty.</p>
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-pink-300 text-[11.5px]">
-                  <BookOpen className="w-3.5 h-3.5 text-pink-400" />
-                  <span>ACID Udhaar Ledger</span>
-                </div>
-                <p className="text-[10.5px] text-slate-400">Atomic store credit limit checks &amp; instant repayment logs.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Trust Metric Pill */}
-          <div className="flex items-center gap-3 text-xs text-slate-400 pt-1">
-            <div className="flex -space-x-2">
-              <div className="w-7 h-7 rounded-full bg-fuchsia-600 border-2 border-slate-950 font-bold text-[10px] flex items-center justify-center text-white">
-                R
-              </div>
-              <div className="w-7 h-7 rounded-full bg-emerald-600 border-2 border-slate-950 font-bold text-[10px] flex items-center justify-center text-white">
-                V
-              </div>
-              <div className="w-7 h-7 rounded-full bg-purple-600 border-2 border-slate-950 font-bold text-[10px] flex items-center justify-center text-white">
-                A
-              </div>
-            </div>
-            <span className="font-semibold text-slate-300">
-              Trusted by 2,500+ electronics retailers &amp; repair labs across India
-            </span>
-          </div>
-
-        </div>
-
-        {/* RIGHT COLUMN: Clean, Elevated Form Card */}
-        <div className="lg:col-span-6 w-full max-w-md mx-auto lg:max-w-none">
-          <div className="bg-slate-900/90 border border-slate-800/90 backdrop-blur-2xl rounded-3xl shadow-2xl p-6 sm:p-10 space-y-6">
-            
-            {/* Form Header */}
-            <div className="space-y-2 text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-2">
-                <Store className="w-5 h-5 text-fuchsia-400" />
-                <span className="text-xs font-bold text-fuchsia-400 uppercase tracking-wider">
-                  Store Counter Sign-In
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                Access Terminal
-              </h2>
-              <p className="text-xs text-slate-400 font-medium">
-                Enter your merchant owner or cashier credentials below
-              </p>
-            </div>
-
-            {/* Error Alert */}
-            {error && (
-              <div className="p-3.5 bg-rose-950/90 border border-rose-800 text-rose-200 text-xs rounded-xl font-semibold flex items-center gap-2.5 animate-in fade-in zoom-in-95">
-                <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
-                <span>{error}</span>
-              </div>
-            )}
-
-            {/* Sign-In Form */}
-            <form onSubmit={handleLogin} className="space-y-4 text-xs">
-              <div>
-                <label className="block font-bold text-slate-300 mb-1.5 uppercase text-[10.5px] tracking-wider">
-                  Email Address or Store Phone *
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-center">
+                <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                  Password
                 </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. owner@store.com or 9876543210"
-                    value={identifier}
-                    onChange={(e) => setIdentifier(e.target.value)}
-                    className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-3.5 py-3.5 text-white placeholder-slate-600 focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500 focus:outline-none font-medium transition-colors"
-                  />
-                </div>
+                <Link
+                  href="/pos/forgot-password"
+                  className="text-[11px] text-violet-400 hover:text-violet-300 font-bold transition-colors"
+                >
+                  Forgot password?
+                </Link>
               </div>
-
-              <div>
-                <div className="flex justify-between items-center mb-1.5">
-                  <label className="font-bold text-slate-300 uppercase text-[10.5px] tracking-wider">
-                    Terminal Password *
-                  </label>
-                  <Link
-                    href="/pos/forgot-password"
-                    className="text-[11px] text-fuchsia-400 hover:text-fuchsia-300 font-extrabold transition-colors"
-                  >
-                    Owner Self-Reset OTP?
-                  </Link>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <Lock className="w-4 h-4" />
                 </div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
-                    <Lock className="w-4 h-4" />
-                  </div>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    required
-                    placeholder="••••••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-10 py-3.5 text-white placeholder-slate-600 focus:border-fuchsia-500 focus:ring-1 focus:ring-fuchsia-500 focus:outline-none font-medium transition-colors"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4 text-slate-300" /> : <Eye className="w-4 h-4 text-slate-500" />}
-                  </button>
-                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  placeholder="••••••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-slate-950/90 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-sm text-white placeholder-slate-600 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 focus:outline-none font-medium transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4 text-slate-300" /> : <Eye className="w-4 h-4 text-slate-500" />}
+                </button>
               </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-purple-500 disabled:opacity-50 text-white font-black py-4 rounded-xl text-xs sm:text-sm shadow-xl shadow-fuchsia-600/30 transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Authenticating Terminal...</span>
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart className="w-4 h-4" />
-                    <span>Sign In to Counter Terminal</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </form>
-
-            {/* Footer Security Note */}
-            <div className="border-t border-slate-800/80 pt-4 text-center space-y-1.5">
-              <p className="text-[11px] text-slate-400 font-medium">
-                🔒 Cashier credential resets are strictly restricted to Merchant Owners.
-              </p>
-              <p className="text-[10px] text-slate-500 font-mono">
-                Powered by EcoDigiTech | pos.ecodigitech.com
-              </p>
             </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 disabled:opacity-50 text-white font-extrabold py-3.5 rounded-xl text-sm shadow-lg shadow-violet-600/25 transition-all cursor-pointer active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
+            >
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Signing In...</span>
+                </>
+              ) : (
+                <>
+                  <span>Sign In to Terminal</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Direct Link to Admin Page Box */}
+          <div className="pt-2">
+            <div className="p-3 bg-slate-950/60 border border-slate-800/80 rounded-2xl flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2">
+                <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0" />
+                <span className="text-slate-400 font-medium">Are you a Super Admin?</span>
+              </div>
+              <Link
+                href="/admin/login"
+                className="text-emerald-400 hover:text-emerald-300 font-bold hover:underline transition-colors"
+              >
+                Go to Admin Login →
+              </Link>
+            </div>
+          </div>
+
+          {/* Footer Security Note */}
+          <div className="border-t border-slate-800/60 pt-4 text-center">
+            <p className="text-[11px] text-slate-500 font-medium">
+              🔒 Multi-Tenant Enterprise Security Protected
+            </p>
           </div>
         </div>
 
