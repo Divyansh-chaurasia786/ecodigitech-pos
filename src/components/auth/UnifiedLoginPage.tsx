@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  User,
   Mail,
   Lock,
   Eye,
   EyeOff,
-  Store,
-  ShieldAlert,
   AlertCircle,
   QrCode,
   CheckCircle2,
@@ -142,49 +140,21 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
           <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-rose-500/15 via-purple-500/10 to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-500/20 via-indigo-500/10 to-transparent pointer-events-none" />
 
-          {/* TOP AVATAR SILHOUETTE BADGE (Matching Image) */}
-          <div className="relative z-10 flex flex-col items-center space-y-3">
-            <div className="w-24 h-24 rounded-full bg-white/15 border border-white/25 flex items-center justify-center shadow-xl backdrop-blur-md">
-              <User className="w-12 h-12 text-white/90 stroke-[1.5]" />
-            </div>
-
-            {/* Portal Role Selector Pills */}
-            <div className="p-1 rounded-full bg-black/25 border border-white/15 flex items-center gap-1 text-[11px] font-medium tracking-wide">
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab("STORE");
-                  setStoreError("");
-                }}
-                className={`px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === "STORE"
-                    ? "bg-white/25 text-white font-bold shadow-md border border-white/30"
-                    : "text-white/60 hover:text-white"
-                }`}
-              >
-                <Store className="w-3.5 h-3.5" />
-                <span>Store POS</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveTab("ADMIN");
-                  setAdminError("");
-                }}
-                className={`px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === "ADMIN"
-                    ? "bg-white/25 text-white font-bold shadow-md border border-white/30"
-                    : "text-white/60 hover:text-white"
-                }`}
-              >
-                <ShieldAlert className="w-3.5 h-3.5 text-rose-300" />
-                <span>Super Admin</span>
-              </button>
+          {/* TOP LOGO EMBLEM BADGE (Replacing Avatar & Admin Switcher) */}
+          <div className="relative z-10 flex flex-col items-center pt-2">
+            <div className="p-4 bg-white/10 rounded-2xl border border-white/20 shadow-xl backdrop-blur-md">
+              <Image
+                src="/brand/logo.png"
+                alt="EcoDigiTech POS"
+                width={180}
+                height={50}
+                className="h-10 w-auto object-contain"
+                priority
+              />
             </div>
           </div>
 
-          {/* TAB 1: STORE POS FORM */}
+          {/* STORE POS LOGIN FORM */}
           {activeTab === "STORE" && (
             <div className="relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-200">
               {storeError && (
@@ -232,7 +202,7 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                   </div>
                 </div>
 
-                {/* Remember Me & Forgot Password Row (Exact Layout from Photo) */}
+                {/* Remember Me & Forgot Password Row */}
                 <div className="flex items-center justify-between text-xs text-white/80 font-normal pt-1">
                   <label className="flex items-center gap-2 cursor-pointer select-none">
                     <input
@@ -252,7 +222,7 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                   </Link>
                 </div>
 
-                {/* Glowing Multi-Color Gradient Action Button (Matching Reference Photo) */}
+                {/* Glowing Multi-Color Gradient Action Button */}
                 <button
                   type="submit"
                   disabled={storeLoading}
@@ -271,9 +241,13 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
             </div>
           )}
 
-          {/* TAB 2: SUPER ADMIN FORM */}
+          {/* SUPER ADMIN FORM (FOR DEDICATED /admin/login ROUTE ONLY) */}
           {activeTab === "ADMIN" && (
             <div className="relative z-10 space-y-6 animate-in fade-in zoom-in-95 duration-200">
+              <div className="text-center space-y-1">
+                <h2 className="text-lg font-bold text-white tracking-tight">Super Admin Terminal</h2>
+              </div>
+
               {adminError && (
                 <div className="p-3 bg-rose-500/20 border border-rose-400/40 text-rose-100 text-xs rounded-xl font-medium flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-rose-300 shrink-0" />
@@ -318,21 +292,6 @@ export function UnifiedLoginPage({ initialTab = "STORE" }: { initialTab?: "STORE
                         {showAdminPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
-                  </div>
-
-                  {/* Remember Me Row */}
-                  <div className="flex items-center justify-between text-xs text-white/80 font-normal pt-1">
-                    <label className="flex items-center gap-2 cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        checked={rememberMe}
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                        className="w-4 h-4 rounded bg-white/10 border-white/30 text-indigo-500 focus:ring-0 accent-indigo-500 cursor-pointer"
-                      />
-                      <span>Remember me</span>
-                    </label>
-
-                    <span className="text-[11px] text-rose-300 font-mono font-bold">2FA Enabled</span>
                   </div>
 
                   {/* Action Button */}
